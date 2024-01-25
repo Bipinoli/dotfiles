@@ -26,6 +26,7 @@ function setup_neovim() {
 	
 	# creating symboling link for the config 
 	# so that the future git pulls will affect the existing config
+ 	mkdir -p ~/.config
 	rm -rf ~/.config/nvim
 	ln -s `pwd`/nvim ~/.config/nvim
 }
