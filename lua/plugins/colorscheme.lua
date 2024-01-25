@@ -2,8 +2,7 @@ return {
   { "ellisonleao/gruvbox.nvim" },
   { "catppuccin/nvim" },
   { "nyoom-engineering/oxocarbon.nvim" },
-  { "craftzdog/solarized-osaka.nvim" },
-
+  { "EdenEast/nightfox.nvim" },
   -- Configure LazyVim to load gruvbox
   -- {
   --   "LazyVim/LazyVim",
