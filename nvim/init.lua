@@ -2,4 +2,4 @@
 require("config.lazy")
 
 -- default theme
-vim.cmd("colorscheme slate")
+vim.cmd("colorscheme molokai")
