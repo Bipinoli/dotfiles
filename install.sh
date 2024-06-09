@@ -19,7 +19,7 @@ function install_dev_tools() {
 	brew install --cask font-jetbrains-mono-nerd-font
 
 	echo "installing latex"
-	brew install --cask mactex
+	# brew install --cask mactex
 
 	echo "Finished installing dev tools!!"
 }
