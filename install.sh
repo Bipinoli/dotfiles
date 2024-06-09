@@ -18,19 +18,21 @@ function install_dev_tools() {
 	brew tap homebrew/cask-fonts
 	brew install --cask font-jetbrains-mono-nerd-font
 
+	echo "installing latex"
+	brew install --cask mactex
+
 	echo "Finished installing dev tools!!"
 }
 
 function setup_neovim() {
 	echo "configuring nvim"
-	
-	# creating symboling link for the config 
-	# so that the future git pulls will affect the existing config
- 	mkdir -p ~/.config
-	rm -rf ~/.config/nvim
-	ln -s `pwd`/nvim ~/.config/nvim
-}
 
+	# creating symboling link for the config
+	# so that the future git pulls will affect the existing config
+	mkdir -p ~/.config
+	rm -rf ~/.config/nvim
+	ln -s $(pwd)/nvim ~/.config/nvim
+}
 
 install_dev_tools
 setup_neovim
