@@ -34,5 +34,11 @@ function setup_neovim() {
 	ln -s $(pwd)/nvim ~/.config/nvim
 }
 
+function setup_wezterm() {
+	echo "configuring wezterm"
+	ls -s $(pwd)/.wezterm.lua ~/.wezterm.lua
+}
+
 install_dev_tools
 setup_neovim
+setup_wezterm
