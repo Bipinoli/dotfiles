@@ -2,6 +2,12 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
+----------------------- Theme  ----------------------------
+
+config.color_scheme = "Catppuccin Mocha"
+
+-----------------------------------------------------------
+
 config.keys = {
 	------------------ toggling pane -----------------------------
 	-- F12 to toggle the terminal pane on the side
