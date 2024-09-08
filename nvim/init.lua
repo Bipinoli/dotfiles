@@ -7,4 +7,4 @@ require("neodev").setup({
 require("dapui").setup()
 
 -- default theme
-vim.cmd("colorscheme molokai")
+vim.cmd("colorscheme catppuccin-mocha")
