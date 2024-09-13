@@ -1,3 +1,10 @@
+(*
+   Running guide:
+   1. Open Script Editor in Mac and create a new file by copy pasting this
+   2. Export the file as an application
+   3. Enjoy!!
+*)
+
 try
 	tell application "System Preferences"
 		activate
