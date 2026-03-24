@@ -112,11 +112,22 @@ require("lazy").setup({
       opts = {},
       dependencies = { "nvim-tree/nvim-web-devicons" },
       lazy = false,
-    }
+    },
+    {
+      "preservim/tagbar",
+      cmd = "TagbarToggle",
+      keys = {
+        { "<leader>t", "<cmd>TagbarToggle<CR>", desc = "Toggle Tagbar" },
+      },
+      init = function() 
+        vim.g.tagbar_width = 40
+        vim.g.tagbar_autofocus = 1
+        vim.g.tagbar_map_showproto = "\\" -- \ to see the tag prototype
+      end
+    },
   },
   checker = { enabled = true },
 })
-
 
 vim.keymap.set("n", "<leader>o", function()
   local oil = require("oil")
@@ -126,3 +137,13 @@ vim.keymap.set("n", "<leader>o", function()
     oil.open_float()
   end
 end)
+
+local function toggle_tagbar()
+  if vim.bo.filetype == "tagbar" then
+    vim.cmd("TagbarClose")
+  else
+    vim.cmd("TagbarToggle")
+  end
+end
+
+vim.keymap.set("n", "<leader>t", toggle_tagbar, { desc = "Toggle Tagbar", silent = true })
