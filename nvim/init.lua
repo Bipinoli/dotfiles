@@ -99,15 +99,30 @@ require("lazy").setup({
     },
     {
       'nvim-treesitter/nvim-treesitter',
-      lazy = false,  -- load at startup
+      lazy = false,
       build = ':TSUpdate',
       opts = {
         ensure_installed = { 'c', 'cpp', 'python' },
         highlight = { enable = true },
         indent = { enable = true },
       },
+    },
+    {
+      'stevearc/oil.nvim',
+      opts = {},
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+      lazy = false,
     }
   },
   checker = { enabled = true },
 })
 
+
+vim.keymap.set("n", "<leader>o", function()
+  local oil = require("oil")
+  if vim.bo.filetype == "oil" then
+    vim.cmd("bd")
+  else
+    oil.open_float()
+  end
+end)
