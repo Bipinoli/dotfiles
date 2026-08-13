@@ -11,7 +11,6 @@ vim.opt.smartindent = true
 -- set space as a leader key
 vim.g.mapleader = " "
 
-
 -- Toggle Quickfix List
 vim.keymap.set('n', '<leader>q', function()
   local qf_open = false
@@ -134,7 +133,7 @@ vim.keymap.set("n", "<leader>o", function()
   if vim.bo.filetype == "oil" then
     vim.cmd("bd")
   else
-    oil.open_float()
+    oil.open()
   end
 end)
 
