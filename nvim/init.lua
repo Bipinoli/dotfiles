@@ -146,3 +146,70 @@ local function toggle_tagbar()
 end
 
 vim.keymap.set("n", "<leader>t", toggle_tagbar, { desc = "Toggle Tagbar", silent = true })
+
+
+-- Custom command to pin the current buffer 
+vim.api.nvim_create_user_command("Pn", function()
+  if vim.b.pinned then
+    return
+  end
+  local max_pin = 0
+  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_valid(bufnr) and vim.b[bufnr].pinned then
+      max_pin = math.max(max_pin, vim.b[bufnr].pin_number or 0)
+    end
+  end
+  vim.b.pinned = true
+  vim.b.pin_number = max_pin + 1
+  vim.api.nvim_echo({}, false, {})
+end, {})
+
+-- Custom command to unpin the current buffer 
+vim.api.nvim_create_user_command("Unpn", function()
+  vim.b.pinned = false
+  vim.b.pin_number = nil
+  vim.api.nvim_echo({}, false, {})
+end, {})
+
+-- Custom command to list the pinned buffers
+vim.api.nvim_create_user_command("Ps", function()
+  local pinned = {}
+  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_valid(bufnr) and vim.b[bufnr].pinned then
+      table.insert(pinned, bufnr)
+    end
+  end
+    if #pinned == 0 then
+      vim.notify("No pinned buffers", vim.log.levels.INFO)
+      return
+    end
+  table.sort(pinned, function(a, b)
+    return vim.b[a].pin_number < vim.b[b].pin_number
+  end)
+  for _, bufnr in ipairs(pinned) do
+    local name = vim.api.nvim_buf_get_name(bufnr)
+    local relative_name = vim.fn.fnamemodify(name, ":.")
+    print(vim.b[bufnr].pin_number .. " " .. relative_name)
+  end
+end, {})
+
+-- Custom command to jump to the pinned buffer by pin number
+vim.api.nvim_create_user_command("P", function(opts)
+  local pin_number = tonumber(opts.args)
+  if not pin_number then
+    vim.notify("Usage: :P <number>", vim.log.levels.ERROR)
+    return
+  end
+  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_valid(bufnr)
+        and vim.b[bufnr].pinned
+        and vim.b[bufnr].pin_number == pin_number then
+      vim.api.nvim_set_current_buf(bufnr)
+      return
+    end
+  end
+  vim.notify("No pinned buffer " .. pin_number, vim.log.levels.WARN)
+end, {
+  nargs = 1,
+})
+
