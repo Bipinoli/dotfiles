@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+wmctrl -d | while read -r n rest; do
+    echo "Workspace $((n+1))"
+
+    wmctrl -lx | awk -v ws="$n" '
+    $2 == ws {
+        app=$3
+        sub(/^[^.]*\./, "", app)
+        print "├── " app
+    }'
+
+    echo
+done
+
