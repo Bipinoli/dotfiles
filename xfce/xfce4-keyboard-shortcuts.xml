@@ -44,6 +44,7 @@
       <property name="&lt;Super&gt;2" type="string" value="wmctrl -s 1"/>
       <property name="&lt;Super&gt;0" type="string" value="wmctrl -s 2"/>
       <property name="&lt;Super&gt;minus" type="string" value="wmctrl -s 3"/>
+      <property name="&lt;Super&gt;f" type="string" value="wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz"/>
     </property>
   </property>
   <property name="xfwm4" type="empty">
@@ -103,6 +104,7 @@
     </property>
     <property name="custom" type="empty">
       <property name="&lt;Primary&gt;F12" type="string" value="workspace_12_key"/>
+      <property name="&lt;Alt&gt;F4" type="string" value="close_window_key"/>
       <property name="&lt;Primary&gt;&lt;Alt&gt;KP_3" type="string" value="move_window_workspace_3_key"/>
       <property name="&lt;Primary&gt;F2" type="string" value="workspace_2_key"/>
       <property name="&lt;Primary&gt;&lt;Alt&gt;Down" type="string" value="down_workspace_key"/>
@@ -154,7 +156,6 @@
       <property name="&lt;Primary&gt;&lt;Alt&gt;KP_8" type="string" value="move_window_workspace_8_key"/>
       <property name="&lt;Alt&gt;Insert" type="string" value="add_workspace_key"/>
       <property name="override" type="bool" value="true"/>
-      <property name="&lt;Alt&gt;F4" type="string" value="close_window_key"/>
     </property>
   </property>
   <property name="providers" type="array">
